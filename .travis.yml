@@ -1,0 +1,43 @@
+language: ruby
+rvm:
+  - 2.5.0
+
+before_install:
+  - chmod +x _scripts/fetch.sh
+  - _scripts/fetch.sh
+  - npm i -g npm@6.1.0
+
+install:
+  - chmod +x _scripts/install.sh
+  - _scripts/install.sh
+  - npm install
+  - bundle install
+  - gem install jekyll
+
+branches:
+  only:
+    - master
+
+notifications:
+  email:
+    recipients:
+      - tig.welder4@gmail.com
+    on_success: always
+    on_failure: always
+
+before_script:
+  - npm install -g gulp-cli
+
+script:
+  - chmod +x _scripts/build.sh
+  - _scripts/build.sh
+
+#after_success:
+#  - chmod +x _scripts/deploy.sh
+#  - _scripts/deploy.sh
+
+sudo: false
+addons:
+  apt:
+    packages:
+      - ncftp
