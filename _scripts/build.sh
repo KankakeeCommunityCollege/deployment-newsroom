@@ -1,3 +1,3 @@
 #!/bin/bash
 
-timeout 60s gulp --production
+timeout 30s gulp --production
