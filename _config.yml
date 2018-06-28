@@ -40,6 +40,7 @@ exclude:
   - "/assets/adobe/"
   - "gulp-tasks"
   - "_scripts/"
+  - ".travis.yml"
 
 uploads_dir: # specifies the default uploads directory for CloudCannon
   - "uploads/"
