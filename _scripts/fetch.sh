@@ -15,9 +15,9 @@ for branch in $(git branch -r|grep -v HEAD) ; do
    git checkout -qf ${branch#origin/}
 done
 
+# finally, go back to where we were at the beginning
+git checkout ${build_head}
+
 git checkout master
 git merge
 git merge cloudcannon
-
-# finally, go back to where we were at the beginning
-git checkout ${build_head}
