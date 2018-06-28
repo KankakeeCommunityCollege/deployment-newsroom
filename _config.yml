@@ -39,6 +39,7 @@ exclude:
   - "yarn.lock"
   - "/assets/adobe/"
   - "gulp-tasks"
+  - "_scripts/"
 
 uploads_dir: # specifies the default uploads directory for CloudCannon
   - "uploads/"
