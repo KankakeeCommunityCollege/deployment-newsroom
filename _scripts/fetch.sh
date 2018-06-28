@@ -1,3 +1,5 @@
+git config --global user.email "travis@travis-ci.org"
+git config --global user.name "Travis CI"
 # Keep track of where Travis put us.
 # We are on a detached head, and we need to be able to go back to it.
 local build_head=$(git rev-parse HEAD)
@@ -24,4 +26,5 @@ git checkout cloudcannon
 git merge
 git checkout master
 git merge cloudcannon -m "Travis merge of cloudcannon to master branch"
+git remote add origin https://${GH_TOKEN}@github.com/kankakeecommunitycollege/deployment-newsroom.git > /dev/null 2>&1
 git push -u origin master
