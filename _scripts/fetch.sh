@@ -20,4 +20,8 @@ git checkout ${build_head}
 
 git checkout master
 git merge
-git merge cloudcannon
+git checkout cloudcannon
+git merge
+git checkout master
+git merge cloudcannon -m "Travis merge of cloudcannon to master branch"
+git push -u origin master
