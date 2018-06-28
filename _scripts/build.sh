@@ -1,3 +1,3 @@
 #!/bin/bash
 
-gulp --production
+timeout 1 "gulp --production"
