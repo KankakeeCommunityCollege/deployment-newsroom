@@ -1,5 +1,19 @@
+declare -r SSH_FILE="$(mktemp -u $HOME/.ssh/XXXXX)"
+# Decrypt the file containing the private key
+       openssl aes-256-cbc \
+         -K $encrypted_bfaa3cf3ea33_key \
+         -iv $encrypted_bfaa3cf3ea33_iv \
+         -in ".travis/github_deploy_key.enc" \
+         -out "$SSH_FILE" -d
+       # Enable SSH authentication
+       chmod 600 "$SSH_FILE" \
+         && printf "%s\n" \
+              "Host github.com" \
+              "  IdentityFile $SSH_FILE" \
+              "  LogLevel ERROR" >> ~/.ssh/config
+
 git config --global user.email "travis@travis-ci.org"
-git config --global user.name "Travis CI"
+git config --global user.name "Travis-CI"
 # Keep track of where Travis put us.
 # We are on a detached head, and we need to be able to go back to it.
 local build_head=$(git rev-parse HEAD)
