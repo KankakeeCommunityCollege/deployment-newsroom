@@ -12,8 +12,8 @@ declare -r SSH_FILE="$(mktemp -u $HOME/.ssh/XXXXX)"
               "  IdentityFile $SSH_FILE" \
               "  LogLevel ERROR" >> ~/.ssh/config
 
-git config --global user.email "webservices@kcc.edu"
-git config --global user.name "kccwebservices"
+git config --global user.email "$COMMIT_EMAIL"
+git config --global user.name "wdzajicek"
 # Keep track of where Travis put us.
 # We are on a detached head, and we need to be able to go back to it.
 function create_all_branches()

@@ -18,8 +18,7 @@ branches:
   - master
 notifications:
   email:
-    recipients:
-    - tig.welder4@gmail.com
+    recipients: $COMMIT_EMAIL
     on_success: always
     on_failure: always
 before_script:
