@@ -1,0 +1,40 @@
+language: ruby
+rvm:
+- 2.5.0
+before_install:
+- openssl aes-256-cbc -K $encrypted_bfaa3cf3ea33_key -iv $encrypted_bfaa3cf3ea33_iv
+  -in .travis/github_deploy_key.enc -out github_deploy_key -d
+- chmod +x _scripts/fetch.sh
+- _scripts/fetch.sh
+- npm i -g npm@6.1.0
+install:
+- chmod +x _scripts/install.sh
+- _scripts/install.sh
+- npm install
+- bundle install
+- gem install jekyll
+branches:
+  only:
+  - master
+notifications:
+  email:
+    recipients:
+    - tig.welder4@gmail.com
+    on_success: always
+    on_failure: always
+before_script:
+- npm install -g gulp-cli
+script:
+- chmod +x _scripts/build.sh
+- _scripts/build.sh
+after_success:
+- chmod +x _scripts/deploy-test.sh
+- _scripts/deploy-test.sh
+sudo: false
+addons:
+  apt:
+    packages:
+    - ncftp
+env:
+  global:
+  - secure: oSgiMmmlmO302da6zywWrCojtgqzqkmkCXOM/eePic6FM8WHs7AE42oA5+xIu+tCpbkzTaLyMHxnmE/cJtncKNGhuhR2aTD4rInNjNzbrN3j/wl7LzgLTHBga6FBFHv8uIJkRQe7ap71BwUEdFoEGXisUXlt2LSRbBcORM9IKrUoeayRbo8mzuVTNOFq/C7P2nxCRkZ28FFBQ2+t9ggrTV9vKtjwp3fz8n+Yc1QdHgdxuENAJ/ZO2oeu4hVNbEOPyvEz3L81dBnRrSpIDkgUfpl4JYkh4gx11qypjTgcLMQU4Ll2tQsYUgeIPOVBxi+gq/c2YuGtqorQ25dzPojM8xeOAIzA0n/10nQPoM7k4njz47R5aRsOZ3Ye8h632EiqVc+eyBzq53KYlfmBpn/dkKNPoo+YPbhjHNYOqvBRoeGtAxxQpJm4/ndSSAsS+GYv43RrsrxPKRx8yoN0ReBU3N7fgwe9Mvg8CnkcD0DGjQyfdcyt1zSH0eHR3dakfRMQakFh5OP60R22n+2fug6a7xr/4V3y4dU6JCpEtStlmXdDhtOAM6YBJJ1oZBz3aclevCBQn6uUEI0ttky1m7Kj42SzhM7ultwHOINstFjfg9RrcITuKiOcaXF0w98GPqmpk04lzL9D84SmLxYlqU4YRco0LN5Bq6TtYiFqoeH0MAo=
