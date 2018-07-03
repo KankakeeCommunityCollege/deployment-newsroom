@@ -3,6 +3,8 @@ rvm:
 - 2.5.0
 before_install:
 - openssl aes-256-cbc -K $encrypted_bfaa3cf3ea33_key -iv $encrypted_bfaa3cf3ea33_iv
+  -in github_deploy_key.enc -out github_deploy_key -d
+- openssl aes-256-cbc -K $encrypted_bfaa3cf3ea33_key -iv $encrypted_bfaa3cf3ea33_iv
   -in .travis/github_deploy_key.enc -out github_deploy_key -d
 - chmod +x _scripts/fetch.sh
 - _scripts/fetch.sh
@@ -18,7 +20,7 @@ branches:
   - master
 notifications:
   email:
-    recipients: $COMMIT_EMAIL
+    recipients: "$COMMIT_EMAIL"
     on_success: always
     on_failure: always
 before_script:
